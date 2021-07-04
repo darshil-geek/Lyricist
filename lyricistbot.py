@@ -34,6 +34,7 @@ async def lyr(ctx, *arg):
 
   a
   lyrics_str=''
+  lyrics_list=[]
   s_ = string[string.index('~') : len(string)]
   for _s in s_ :
     if(_s == '~'):
@@ -51,13 +52,14 @@ async def lyr(ctx, *arg):
           if line == '':
             lyrics.remove(line)
           else:
-            lyrics_str+=line
+            #lyrics_str+=line
+            lyrics_list.append(line)
             #await ctx.channel.send("{}".format(line))
       #await ctx.channel.send(lyrics_str) #sending the lyrics in one ugly string
 
   embed= discord.Embed(
         title = 'Embedded lyrics',
-        description = lyrics_str,
+        description =  '\n'.join(lyrics_list),
         colour = discord.Colour.random() 
     )
       
