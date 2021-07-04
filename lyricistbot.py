@@ -53,11 +53,21 @@ async def lyr(ctx, *arg):
           else:
             lyrics_str+=line
             #await ctx.channel.send("{}".format(line))
-      await ctx.channel.send(lyrics_str)
+      #await ctx.channel.send(lyrics_str) #sending the lyrics in one ugly string
+
+  embed= discord.Embed(
+        title = 'Embedded lyrics',
+        description = lyrics_str,
+        colour = discord.Colour.random() 
+    )
+      
+
+  await ctx.channel.send(embed=embed) #ctx.send
+
       #await ctx.channel.send("Here's a link to the annotated lyrics: \n{}".format(lyrics))
-  else:
-        await ctx.channel.send("I was unable to find the queried song. My apologies :(  " +
-        "Check for typos and try again.")
+  #else:
+   #     await ctx.channel.send("I was unable to find the queried song. My apologies :(  " +
+   #     "Check for typos and try again.")
 
 
 
