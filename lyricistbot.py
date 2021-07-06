@@ -15,7 +15,7 @@ client = commands.Bot(command_prefix = '$')
 client.remove_command("help")
 @client.event
 async def on_ready():
-  print('Bot is ready!')
+  print('Bot is online !')
 
 
 
@@ -249,28 +249,29 @@ async def art(ctx,*arg):
 
 @client.command()
 async def name(ctx,*arg):      # $name Viva la vida ~ Coldplay
-    s=''   
-    trial_a=''                 #empty string to store song name
-    string = arg
-    for str in string:
-        if str == '~':
-            break
-        s = s + str
-    s                       #string stored song name
-
-    a=''                    #empty string to store artist name
-    a=string[string.index('~') : len(string)]
-    for str in a:
-        if str == '~':
-            continue
-        trial_a = trial_a + str
-    trial_a             #string stored artist name
-        
+    string=''
+    artist_name=''
+    song_name=''
     
-    artist = api.search_artist(trial_a,max_songs=3)
+    string=arg
+    for str in string:
+      if(str == '~'):
+        break
+      song_name = song_name + str + " "
+    #song_name.pop(0)
+    song_= string[string.index('~') : len(string)]
+    for _a in song_ :
+      if(_a == '~'):
+        continue
+      artist_name = artist_name + " " + _a
+
+    artist = api.search_artist(artist_name,max_songs=3)
     song = artist.songs.pop(rando)
     name=song.title
-    if s == name :
+    name_str=''.join(name)
+    
+    song_name=song_name[:-1]
+    if song_name == name_str :
         await ctx.channel.send("Correct")
     else:
         await ctx.channel.send("Incorrect")
